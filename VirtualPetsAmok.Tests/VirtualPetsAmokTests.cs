@@ -10,7 +10,8 @@ namespace VirtualPetsAmok.Tests
         {
             VirtualPet pet = new VirtualPet();
 
-            Assert.Equal("name", pet.Name);
+            Assert.Equal(pet.Name, pet.Name);
+            Assert.Equal(pet.Species, pet.Species);
         }
     }
 }
