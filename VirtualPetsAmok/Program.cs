@@ -28,7 +28,12 @@ namespace VirtualPetsAmok
         {
             Console.Clear();
             Console.WriteLine("Pet Name: " + pet.Name);
-            Console.WriteLine("Pet Species: " + pet.Species);
+            Console.WriteLine("Pet Species: " + pet.Species, Environment.NewLine);
+            Console.WriteLine("Fatigue: " + pet.Fatigue);
+            Console.WriteLine("Hunger: " + pet.Hunger);
+            Console.WriteLine("Thirst: " + pet.Thirst);
+            Console.WriteLine("Boredom: " + pet.Boredom);
+            Console.WriteLine("Potty: " + pet.Potty);
             Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();
             MainMenu();
