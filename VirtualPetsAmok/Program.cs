@@ -15,10 +15,12 @@ namespace VirtualPetsAmok
             Console.Clear();
             Console.WriteLine("Please name your new pet?");
             pet.Name = Console.ReadLine();
-            Console.WriteLine(Environment.NewLine);
+            Console.Clear();
+        Start:
             Console.WriteLine("What species is your new pet?");
             Console.WriteLine("1. Dog");
             Console.WriteLine("2. Cat");
+            Console.WriteLine();
             string speciesChoice = Console.ReadLine();
 
             switch (speciesChoice)
@@ -29,6 +31,11 @@ namespace VirtualPetsAmok
                 case "2":
                     pet.Species = "Cat";
                     break;
+                default:
+                    Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    goto Start;
             }
 
             Console.Clear();
@@ -79,12 +86,13 @@ namespace VirtualPetsAmok
 
         static void MainMenu()
         {
+        MenuStart:
             Console.Clear();
             Console.WriteLine("========= MAIN MENU =========");
             Console.WriteLine("1. Display Pet Info");
             Console.WriteLine("2. Pet Interactions");
             Console.WriteLine("3. Pet Status");
-            Console.WriteLine("5. Quit Game");
+            Console.WriteLine("0. Quit Game");
 
             string menuSelection = Console.ReadLine();
 
@@ -99,9 +107,13 @@ namespace VirtualPetsAmok
                 case "3":
                     PetStatus();
                     break;
-                case "5":
+                case "0":
                     Environment.Exit(0);
                     break;
+                default:
+                    Console.Write("Please enter a valid choice. Press ENTER to try again.");
+                    Console.ReadKey();
+                    goto MenuStart;
             }
         }
 
@@ -110,12 +122,12 @@ namespace VirtualPetsAmok
             if (pet.Species == "Dog")
             {
                 // Print Dog
-                Console.WriteLine("    ___");
-                Console.WriteLine(" __/_  `.  .-''' -.");
+                Console.WriteLine(@"    ___");
+                Console.WriteLine(@" __/_  `.  .-''' -.");
                 Console.WriteLine(@" \_,` | \-'  /   )`-')");
                 Console.WriteLine(@"  '') `'`    \  ((`'`");
-                Console.WriteLine(" ___Y  ,    .'7 /|");
-                Console.WriteLine("(_,___/...-` (_/_/");
+                Console.WriteLine(@" ___Y  ,    .'7 /|");
+                Console.WriteLine(@"(_,___/...-` (_/_/");
                 Console.WriteLine();
                 Console.WriteLine();
 
