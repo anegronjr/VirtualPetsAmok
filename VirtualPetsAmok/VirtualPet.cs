@@ -6,7 +6,7 @@ namespace VirtualPetsAmok
 {
     public class VirtualPet
     {
-        //Declaring variables
+        //Declaring variables.
         public string Name { get; set; }
         public string Species { get; set; }
         public int Hunger { get; set; }
@@ -15,9 +15,8 @@ namespace VirtualPetsAmok
         public int Boredom { get; set; }
         public int Potty { get; set; }
 
-       //Constructor method: assigns random default values to class variables
-       public VirtualPet() 
-       {
+       public VirtualPet() //Constructor method. Assigns random default values to class variables.
+        {
             Random rnd = new Random();
 
             Hunger = rnd.Next(20, 50);

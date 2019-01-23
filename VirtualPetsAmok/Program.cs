@@ -9,6 +9,7 @@ namespace VirtualPetsAmok
 
         static void Main(string[] args)
         {
+            //Game start
             Console.WriteLine("Thanks for playing Virtual Pets Amok!");
             Console.WriteLine("We'll start by creating your first pet.");
             Console.WriteLine("Press ENTER to continue.");
@@ -36,7 +37,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
                     Console.ReadKey();
                     Console.Clear();
-                    goto SpeciesSelection; //Goes to line 19.
+                    goto SpeciesSelection; //Goes to line 21.
 
             }
 
@@ -47,7 +48,7 @@ namespace VirtualPetsAmok
             MainMenu();
         }
 
-        //Display pet info
+        //Method that displays Pet Info.
         static void PetInfo() 
         {
             Console.Clear();
@@ -60,7 +61,7 @@ namespace VirtualPetsAmok
             MainMenu();
         }
 
-        //Displays Pet Interaction Menu
+        //Method that displays Pet Interaction menu.
         static void PetInteractions()
         {
             Console.Clear();
@@ -73,7 +74,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("6. Go Back to Main Menu");
         }
 
-        //Displays Pet Status
+        //Method that displays Pet Status.
         static void PetStatus()
         {
             Console.Clear();
@@ -89,7 +90,7 @@ namespace VirtualPetsAmok
             MainMenu();
         }
 
-        //Displays Main Menu
+        //Method that displays Main Menu.
         static void MainMenu()
         {
             Console.Clear();
@@ -98,10 +99,8 @@ namespace VirtualPetsAmok
             Console.WriteLine("2. Pet Interactions");
             Console.WriteLine("3. Pet Status");
             Console.WriteLine("0. Quit Game");
-
             string menuSelection = Console.ReadLine();
 
-            //Switch statement to guide the main menu
             switch (menuSelection)
             {
                 case "1":
@@ -124,11 +123,12 @@ namespace VirtualPetsAmok
             }
         }
 
+        //Method that draws pet's ASCII art.
         static void DrawPicture()
         {
             if (pet.Species == "Dog")
             {
-                // Print Dog
+                //Print dog
                 Console.WriteLine(@"    ___");
                 Console.WriteLine(@" __/_  `.  .-''' -.");
                 Console.WriteLine(@" \_,` | \-'  /   )`-')");
@@ -140,7 +140,7 @@ namespace VirtualPetsAmok
 
             } else if (pet.Species == "Cat")
             {
-                // Print cat
+                //Print cat
                 Console.WriteLine(@"   |\---/|");
                 Console.WriteLine(@"   | ,_, |");
                 Console.WriteLine(@"    \_`_/-..----.");
@@ -151,6 +151,5 @@ namespace VirtualPetsAmok
                 Console.WriteLine();
             }
         }
-
     }
 }
