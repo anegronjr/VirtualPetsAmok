@@ -4,6 +4,7 @@ namespace VirtualPetsAmok
 {
     class Program
     {
+        //Creates first instance of Pet Class
         static VirtualPet pet = new VirtualPet();
 
         static void Main(string[] args)
@@ -16,7 +17,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("Please name your new pet?");
             pet.Name = Console.ReadLine();
             Console.Clear();
-        Start:
+        SpeciesSelection:
             Console.WriteLine("What species is your new pet?");
             Console.WriteLine("1. Dog");
             Console.WriteLine("2. Cat");
@@ -35,7 +36,8 @@ namespace VirtualPetsAmok
                     Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
                     Console.ReadKey();
                     Console.Clear();
-                    goto Start;
+                    goto SpeciesSelection; //Goes to line 19.
+
             }
 
             Console.Clear();
@@ -45,6 +47,7 @@ namespace VirtualPetsAmok
             MainMenu();
         }
 
+        //Display pet info
         static void PetInfo() 
         {
             Console.Clear();
@@ -57,6 +60,7 @@ namespace VirtualPetsAmok
             MainMenu();
         }
 
+        //Displays Pet Interaction Menu
         static void PetInteractions()
         {
             Console.Clear();
@@ -69,6 +73,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("6. Go Back to Main Menu");
         }
 
+        //Displays Pet Status
         static void PetStatus()
         {
             Console.Clear();
@@ -84,9 +89,9 @@ namespace VirtualPetsAmok
             MainMenu();
         }
 
+        //Displays Main Menu
         static void MainMenu()
         {
-        MenuStart:
             Console.Clear();
             Console.WriteLine("========= MAIN MENU =========");
             Console.WriteLine("1. Display Pet Info");
@@ -96,6 +101,7 @@ namespace VirtualPetsAmok
 
             string menuSelection = Console.ReadLine();
 
+            //Switch statement to guide the main menu
             switch (menuSelection)
             {
                 case "1":
@@ -113,7 +119,8 @@ namespace VirtualPetsAmok
                 default:
                     Console.Write("Please enter a valid choice. Press ENTER to try again.");
                     Console.ReadKey();
-                    goto MenuStart;
+                    MainMenu();
+                    break;
             }
         }
 

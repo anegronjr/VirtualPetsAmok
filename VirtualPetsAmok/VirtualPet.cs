@@ -6,6 +6,7 @@ namespace VirtualPetsAmok
 {
     public class VirtualPet
     {
+        //Declaring variables
         public string Name { get; set; }
         public string Species { get; set; }
         public int Hunger { get; set; }
@@ -14,6 +15,7 @@ namespace VirtualPetsAmok
         public int Boredom { get; set; }
         public int Potty { get; set; }
 
+       //Constructor method: assigns random default values to class variables
        public VirtualPet() 
        {
             Random rnd = new Random();
@@ -22,7 +24,7 @@ namespace VirtualPetsAmok
             Fatigue = rnd.Next(20, 50);
             Thirst = rnd.Next(20, 50);
             Boredom = rnd.Next(20, 50);
-            Potty = rnd.Next(20, 50);
+            Potty = rnd.Next(20, 50); 
        }
     }
 }
