@@ -51,7 +51,7 @@ namespace VirtualPetsAmok.Tests
 
             myPet.Fatigue = 42;
 
-            Assert.Equal(42, myPet.Fatigue);
+            Assert.InRange(myPet.Fatigue, 20, 50);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace VirtualPetsAmok.Tests
 
             myPet.Thirst = 42;
 
-            Assert.Equal(42, myPet.Thirst);
+            Assert.InRange(myPet.Thirst, 20, 50);
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace VirtualPetsAmok.Tests
 
             myPet.Boredom = 42;
 
-            Assert.Equal(42, myPet.Boredom);
+            Assert.InRange(myPet.Boredom, 20, 50);
         }
 
         [Fact]
@@ -81,7 +81,75 @@ namespace VirtualPetsAmok.Tests
 
             myPet.Potty = 42;
 
-            Assert.Equal(42, myPet.Potty);
+            Assert.InRange(myPet.Potty, 20, 50);
+        }
+
+        [Fact]
+        public void Feed_Decrease_Hunger()
+        {
+            var myPet = new VirtualPet();
+
+            myPet.Hunger = 42;
+
+            myPet.Feed();
+
+            Assert.InRange(myPet.Hunger, 32, 37);
+        }
+
+        [Fact]
+        public void Rest_Decrease_Fatigue()
+        {
+            var myPet = new VirtualPet();
+
+            myPet.Rest();
+
+            Assert.Equal(0, myPet.Fatigue);
+        }
+
+        [Fact]
+        public void Drink_Decrease_Thirst()
+        {
+            var myPet = new VirtualPet();
+
+            myPet.Thirst = 42;
+
+            myPet.Drink();
+
+            Assert.InRange(myPet.Thirst, 32, 37);
+        }
+
+        [Fact]
+        public void Play_Decrease_Boredom()
+        {
+            var myPet = new VirtualPet();
+
+            myPet.Boredom = 42;
+
+            myPet.Play();
+
+            Assert.InRange(myPet.Boredom, 32, 37);
+        }
+
+        [Fact]
+        public void Poop_Decrease_Potty()
+        {
+            var myPet = new VirtualPet();
+
+            myPet.Poop();
+
+            Assert.Equal(0, myPet.Potty);
+        }
+        
+        [Fact]
+        public void Decay_Affects_Status()
+        {
+            var myPet = new VirtualPet();
+            myPet.Hunger = 42;
+
+            myPet.Decay();
+
+            Assert.InRange(myPet.Hunger, 37, 41);
         }
     }
+
 }

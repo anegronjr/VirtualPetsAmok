@@ -15,7 +15,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("Press ENTER to continue.");
             Console.ReadKey();
             Console.Clear();
-            Console.WriteLine("Please name your new pet?");
+            Console.WriteLine("Please name your new pet.");
             pet.Name = Console.ReadLine();
             Console.Clear();
         SpeciesSelection:
@@ -55,7 +55,7 @@ namespace VirtualPetsAmok
             DrawPicture();
             Console.WriteLine("Pet Name: " + pet.Name);
             Console.WriteLine("Pet Species: " + pet.Species);
-            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine();
             Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();
             MainMenu();
@@ -72,6 +72,75 @@ namespace VirtualPetsAmok
             Console.WriteLine("4. Bathroom");
             Console.WriteLine("5. Give water");
             Console.WriteLine("6. Go Back to Main Menu");
+
+            string interactionSelection = Console.ReadLine();
+            
+            switch(interactionSelection) 
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("You took " + pet.Name + " out to the park!");
+                    Console.WriteLine(pet.Name + " had a great time!");
+                    pet.Play();
+                    Console.WriteLine();
+                    Console.WriteLine(pet.Name + "'s Boredom is now: " + pet.Boredom);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine(pet.Name + " devoured its food!");
+                    pet.Feed();
+                    Console.WriteLine();
+                    Console.WriteLine(pet.Name + "'s Hunger is now: " + pet.Hunger);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine("Zzzzzzzzzzzzzzzzzzz. " + pet.Name + " is taking a nap...");
+                    pet.Rest();
+                    Console.WriteLine();
+                    Console.WriteLine(pet.Name + " is now fully rested!");
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "4":
+                    Console.Clear();
+                    Console.WriteLine(pet.Name + " sniffs around...");
+                    Console.WriteLine(pet.Name + " left a mess!");
+                    pet.Poop();
+                    Console.WriteLine();
+                    Console.WriteLine(pet.Name + " successfully relieved itself!");
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "5":
+                    Console.Clear();
+                    Console.WriteLine(pet.Name + " drinks some water!");
+                    pet.Drink();
+                    Console.WriteLine();
+                    Console.WriteLine(pet.Name + " looks pleased!");
+                    Console.WriteLine(pet.Name + "'s thirst is now: " + pet.Thirst);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "6":
+                    MainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid selection.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+
+            }
+
         }
 
         //Method that displays Pet Status.
@@ -79,11 +148,11 @@ namespace VirtualPetsAmok
         {
             Console.Clear();
             DrawPicture();
-            Console.WriteLine("Fatigue: " + pet.Fatigue);
-            Console.WriteLine("Hunger: " + pet.Hunger);
-            Console.WriteLine("Thirst: " + pet.Thirst);
             Console.WriteLine("Boredom: " + pet.Boredom);
+            Console.WriteLine("Hunger: " + pet.Hunger);
+            Console.WriteLine("Fatigue: " + pet.Fatigue);
             Console.WriteLine("Potty: " + pet.Potty);
+            Console.WriteLine("Thirst: " + pet.Thirst);
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();

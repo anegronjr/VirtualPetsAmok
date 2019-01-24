@@ -25,5 +25,36 @@ namespace VirtualPetsAmok
             Boredom = rnd.Next(20, 50);
             Potty = rnd.Next(20, 50); 
        }
+        public void Feed()
+        {
+            Random rnd = new Random();
+
+            Hunger -= rnd.Next(5,10);
+        }
+        public void Rest()
+        {
+            Fatigue = 0;
+        }
+
+        public void Drink()
+        {
+            Random rnd = new Random();
+
+            Thirst -= rnd.Next(5, 10);
+        }
+
+        public void Play()
+        {
+            Random rnd = new Random();
+
+            Boredom -= rnd.Next(5, 10);
+        }
+
+        public void Poop()
+        {
+            Potty = 0;
+        }
+
+        
     }
 }
