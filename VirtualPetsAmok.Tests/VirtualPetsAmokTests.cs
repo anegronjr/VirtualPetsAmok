@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using System.Collections.Generic;
 
 namespace VirtualPetsAmok.Tests
 {
@@ -13,8 +14,14 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Pets_In_List()
         {
+            VirtualPet pet = new VirtualPet();
 
+            List<VirtualPet> petList = new List<VirtualPet>();
 
+            petList.Add(pet);
+
+            Assert.Equal(petList[0], pet);
+            
         }
 
         [Fact]
@@ -154,7 +161,7 @@ namespace VirtualPetsAmok.Tests
 
             myPet.Decay();
 
-            Assert.InRange(myPet.Hunger, 37, 41);
+            Assert.InRange(myPet.Hunger, 43, 47);
         }
     }
 
