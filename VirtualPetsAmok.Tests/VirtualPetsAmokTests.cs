@@ -10,6 +10,12 @@ namespace VirtualPetsAmok.Tests
         {
             VirtualPet pet = new VirtualPet();
         }
+        [Fact]
+        public void Pets_In_List()
+        {
+
+
+        }
 
         [Fact]
         public void Pet_Has_Name()

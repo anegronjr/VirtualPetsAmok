@@ -55,6 +55,15 @@ namespace VirtualPetsAmok
             Potty = 0;
         }
 
-        
+        public void Decay()
+        {
+            Random random = new Random();
+
+            Hunger += random.Next(1, 5);
+            Thirst += random.Next(1, 5);
+            Boredom += random.Next(1, 5);
+            Potty += random.Next(1, 5);
+            Fatigue += random.Next(1, 5);
+        }
     }
 }
