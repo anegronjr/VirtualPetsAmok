@@ -6,49 +6,57 @@ namespace VirtualPetsAmok
     class Program
     {
         //Creates first instance of Pet Class.
-        static List<VirtualPet> petList = new List<VirtualPet>();
-        static VirtualPet pet = new VirtualPet();
-        static int currentPet = 0;
+        static PetShelter Shelter = new PetShelter();
+        public static int currentPet = Shelter.CurrentPet;
+        static VirtualPet pet;
 
         //Main program method.
         static void Main(string[] args)
         {
-            //Game start
-            petList.Add(pet);
+            //Game Start
+            VirtualPet FirstPet = new VirtualPet();
+            Shelter.Add(FirstPet);
+
+            pet = Shelter.Pets[currentPet];
 
             Console.WriteLine("Thanks for playing Virtual Pets Amok!");
             Console.WriteLine("We'll start by creating your first pet.");
             Console.WriteLine("Press ENTER to continue.");
             Console.ReadKey();
             Console.Clear();
-            Console.WriteLine("Please name your new pet.");
-            petList[currentPet].Name = Console.ReadLine();
-            Console.Clear();
-        SpeciesSelection:
-            Console.WriteLine("What species is your new pet?");
-            Console.WriteLine("1. Dog");
-            Console.WriteLine("2. Cat");
-            Console.WriteLine();
-            string speciesChoice = Console.ReadLine();
 
-            switch (speciesChoice)
+            bool run = true;
+            do
             {
-                case "1":
-                    petList[currentPet].Species = "Dog";
-                    break;
-                case "2":
-                    petList[currentPet].Species = "Cat";
-                    break;
-                default:
-                    Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    goto SpeciesSelection;
+                Console.WriteLine("Please name your new pet.");
+                pet.Name = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("What species is your new pet?");
+                Console.WriteLine("1. Dog");
+                Console.WriteLine("2. Cat");
+                Console.WriteLine();
+                string speciesChoice = Console.ReadLine();
 
-            }
+                switch (speciesChoice)
+                {
+                    case "1":
+                        pet.Species = "Dog";
+                        run = false;
+                        break;
+                    case "2":
+                        pet.Species = "Cat";
+                        run = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                }
+            } while(run);
 
             Console.Clear();
-            Console.WriteLine("Congratulations! Your new pet " + petList[currentPet].Species + ", " + petList[currentPet].Name + ", is ready to go!");
+            Console.WriteLine("Congratulations! Your new pet " + pet.Species + ", " + pet.Name + ", is ready to go!");
             Console.WriteLine("Press ENTER to go to the main menu.");
             Console.ReadKey();
             MainMenu();
@@ -57,14 +65,14 @@ namespace VirtualPetsAmok
         //Method that displays Main Menu.
         static void MainMenu()
         {
-            Console.WriteLine("Current Pet:  " + petList[currentPet].Name);
+            Console.WriteLine("Current Pet:  " + pet.Name);
             Console.WriteLine();
-            petList[currentPet].Decay();
+            pet.Decay();
             Console.Clear();
             Console.WriteLine("========= MAIN MENU =========");
-            Console.WriteLine("1. Interact with " + petList[currentPet].Name);
-            Console.WriteLine("2. Display " + petList[currentPet].Name + "'s Information");
-            Console.WriteLine("3. Display " + petList[currentPet].Name + "'s Status");
+            Console.WriteLine("1. Interact with " + pet.Name);
+            Console.WriteLine("2. Display " + pet.Name + "'s Information");
+            Console.WriteLine("3. Display " + pet.Name + "'s Status");
             Console.WriteLine("4. Display All Pet Information");
             Console.WriteLine("5. Switch Current Pet");
             Console.WriteLine("6. Create New Pet");
@@ -83,7 +91,7 @@ namespace VirtualPetsAmok
                     PetStatus();
                     break;
                 case "4":
-                    AllPets();
+                    Shelter.AllPets();
                     break;
                 case "5":
                     SwitchCurrentPet();
@@ -110,7 +118,7 @@ namespace VirtualPetsAmok
             Console.WriteLine();
 
             int position = 0;
-            foreach (VirtualPet line in petList)
+            foreach (VirtualPet line in Shelter.Pets)
             {
                 Console.WriteLine((position += 1) + ". Name: " + line.Name + "     Species: " + line.Species);
             }
@@ -119,7 +127,7 @@ namespace VirtualPetsAmok
             currentPet--;
 
             Console.Clear();
-            Console.WriteLine("Your current pet is now " + petList[currentPet].Name + "!");
+            Console.WriteLine("Your current pet is now " + pet.Name + "!");
             Console.WriteLine("Press ENTER to continue.");
             Console.ReadKey();
             MainMenu();
@@ -130,8 +138,8 @@ namespace VirtualPetsAmok
         {
             Console.Clear();
             DrawPicture();
-            Console.WriteLine("Pet Name: " + petList[currentPet].Name);
-            Console.WriteLine("Pet Species: " + petList[currentPet].Species);
+            Console.WriteLine("Pet Name: " + pet.Name);
+            Console.WriteLine("Pet Species: " + pet.Species);
             Console.WriteLine();
             Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();
@@ -143,7 +151,7 @@ namespace VirtualPetsAmok
         {
             pet.Decay();
             Console.Clear();
-            Console.WriteLine("What would you like to do with " + petList[currentPet].Name + "?");
+            Console.WriteLine("What would you like to do with " + pet.Name + "?");
             Console.WriteLine("1. Play");
             Console.WriteLine("2. Feed");
             Console.WriteLine("3. Sleep");
@@ -157,53 +165,53 @@ namespace VirtualPetsAmok
             {
                 case "1":
                     Console.Clear();
-                    Console.WriteLine("You took " + petList[currentPet].Name + " out to the park!");
-                    Console.WriteLine(petList[currentPet].Name + " had a great time!");
-                    petList[currentPet].Play();
+                    Console.WriteLine("You took " + pet.Name + " out to the park!");
+                    Console.WriteLine(pet.Name + " had a great time!");
+                    pet.Play();
                     Console.WriteLine();
-                    Console.WriteLine(petList[currentPet].Name + "'s Boredom is now: " + petList[currentPet].Boredom);
+                    Console.WriteLine(pet.Name + "'s Boredom is now: " + pet.Boredom);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
                     PetInteractions();
                     break;
                 case "2":
                     Console.Clear();
-                    Console.WriteLine(petList[currentPet].Name + " devoured its food!");
-                    petList[currentPet].Feed();
+                    Console.WriteLine(pet.Name + " devoured its food!");
+                    pet.Feed();
                     Console.WriteLine();
-                    Console.WriteLine(petList[currentPet].Name + "'s Hunger is now: " + petList[currentPet].Hunger);
+                    Console.WriteLine(pet.Name + "'s Hunger is now: " + pet.Hunger);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
                     PetInteractions();
                     break;
                 case "3":
                     Console.Clear();
-                    Console.WriteLine("Zzzzzzzzzzzzzzzzzzz. " + petList[currentPet].Name + " is taking a nap...");
-                    petList[currentPet].Rest();
+                    Console.WriteLine("Zzzzzzzzzzzzzzzzzzz. " + pet.Name + " is taking a nap...");
+                    pet.Rest();
                     Console.WriteLine();
-                    Console.WriteLine(petList[currentPet].Name + " is now fully rested!");
+                    Console.WriteLine(pet.Name + " is now fully rested!");
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
                     PetInteractions();
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine(petList[currentPet].Name + " sniffs around...");
-                    Console.WriteLine(petList[currentPet].Name + " left a mess!");
-                    petList[currentPet].Poop();
+                    Console.WriteLine(pet.Name + " sniffs around...");
+                    Console.WriteLine(pet.Name + " left a mess!");
+                    pet.Poop();
                     Console.WriteLine();
-                    Console.WriteLine(petList[currentPet].Name + " successfully relieved itself!");
+                    Console.WriteLine(pet.Name + " successfully relieved itself!");
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
                     PetInteractions();
                     break;
                 case "5":
                     Console.Clear();
-                    Console.WriteLine(petList[currentPet].Name + " drinks some water!");
-                    petList[currentPet].Drink();
-                    Console.WriteLine(petList[currentPet].Name + " looks pleased!");
+                    Console.WriteLine(pet.Name + " drinks some water!");
+                    pet.Drink();
+                    Console.WriteLine(pet.Name + " looks pleased!");
                     Console.WriteLine();
-                    Console.WriteLine(petList[currentPet].Name + "'s thirst is now: " + petList[currentPet].Thirst);
+                    Console.WriteLine(pet.Name + "'s thirst is now: " + pet.Thirst);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
                     PetInteractions();
@@ -221,57 +229,52 @@ namespace VirtualPetsAmok
 
         }
 
-        //Method that displays information for all pets.
-        static void AllPets()
-        {
-            Console.Clear();
-            int position = 0;
-            foreach (VirtualPet line in petList)
-            {
-                Console.WriteLine((position += 1) + ". Name: " + line.Name + "     Species: " + line.Species);
-            }
-            Console.WriteLine("Press any key to go to Main Menu.");
-            Console.ReadKey();
-            MainMenu();
-        }
+
 
         //Method that creates new pets.
         static void CreatePet()
         {
-            int numPets = petList.Count;
+            int numPets = Shelter.Pets.Count;
             VirtualPet newPet = new VirtualPet();
 
             Console.Clear();
             Console.WriteLine("Please name your new pet: ");
             newPet.Name = Console.ReadLine();
             Console.Clear();
-        NewPetSpecies:
-            Console.WriteLine("What species is your new pet?");
-            Console.WriteLine("1. Dog");
-            Console.WriteLine("2. Cat");
-            Console.WriteLine();
-            string speciesChoice = Console.ReadLine();
-
-            switch (speciesChoice)
+            bool runNew = true;
+            do
             {
-                case "1":
-                    newPet.Species = "Dog";
-                    break;
-                case "2":
-                    newPet.Species = "Cat";
-                    break;
-                default:
-                    Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
-                    Console.ReadKey();
-                    Console.Clear();
-                    goto NewPetSpecies;
+                Console.WriteLine("Please name your new pet.");
+                newPet.Name = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("What species is your new pet?");
+                Console.WriteLine("1. Dog");
+                Console.WriteLine("2. Cat");
+                Console.WriteLine();
+                string speciesChoice = Console.ReadLine();
 
-            }
+                switch (speciesChoice)
+                {
+                    case "1":
+                        newPet.Species = "Dog";
+                        runNew = false;
+                        break;
+                    case "2":
+                        newPet.Species = "Cat";
+                        runNew = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                }
+            } while (runNew);
 
-            petList.Add(newPet);
+            Shelter.Pets.Add(newPet);
 
             Console.Clear();
-            Console.WriteLine("Congratulations! Your new pet " + petList[numPets].Species + ", " + petList[numPets].Name + ", is ready to go!");
+            Console.WriteLine("Congratulations! Your new pet " + newPet.Species + ", " + newPet.Name + ", is ready to go!");
             Console.WriteLine("Press ENTER to go to the main menu.");
             Console.ReadKey();
             MainMenu();
@@ -283,11 +286,11 @@ namespace VirtualPetsAmok
         {
             Console.Clear();
             DrawPicture();
-            Console.WriteLine("Boredom: " + petList[currentPet].Boredom);
-            Console.WriteLine("Hunger: " + petList[currentPet].Hunger);
-            Console.WriteLine("Fatigue: " + petList[currentPet].Fatigue);
-            Console.WriteLine("Potty: " + petList[currentPet].Potty);
-            Console.WriteLine("Thirst: " + petList[currentPet].Thirst);
+            Console.WriteLine("Boredom: " + pet.Boredom);
+            Console.WriteLine("Hunger: " + pet.Hunger);
+            Console.WriteLine("Fatigue: " + pet.Fatigue);
+            Console.WriteLine("Potty: " + pet.Potty);
+            Console.WriteLine("Thirst: " + pet.Thirst);
             Console.WriteLine();
             Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();
@@ -297,7 +300,7 @@ namespace VirtualPetsAmok
         //Method that draws pet's ASCII art.
         static void DrawPicture()
         {
-            if (petList[currentPet].Species == "Dog")
+            if (pet.Species == "Dog")
             {
                 //Print dog
                 Console.WriteLine(@"    ___");
@@ -309,7 +312,7 @@ namespace VirtualPetsAmok
                 Console.WriteLine();
                 Console.WriteLine();
 
-            } else if (petList[currentPet].Species == "Cat")
+            } else if (pet.Species == "Cat")
             {
                 //Print cat
                 Console.WriteLine(@"   |\---/|");
