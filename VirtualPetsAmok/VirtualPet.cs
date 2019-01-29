@@ -25,12 +25,14 @@ namespace VirtualPetsAmok
             Boredom = rnd.Next(20, 50);
             Potty = rnd.Next(20, 50); 
        }
+
         public void Feed()
         {
             Random rnd = new Random();
 
             Hunger -= rnd.Next(5,10);
         }
+
         public void Rest()
         {
             Fatigue = 0;
@@ -64,6 +66,36 @@ namespace VirtualPetsAmok
             Boredom += random.Next(1, 5);
             Potty += random.Next(1, 5);
             Fatigue += random.Next(1, 5);
+        }
+
+        //Method that draws pet's ASCII art.
+        public void DrawPicture()
+        {
+            if (Species == "Dog")
+            {
+                //Print dog
+                Console.WriteLine(@"    ___");
+                Console.WriteLine(@" __/_  `.  .-''' -.");
+                Console.WriteLine(@" \_,` | \-'  /   )`-')");
+                Console.WriteLine(@"  '') `'`    \  ((`'`");
+                Console.WriteLine(@" ___Y  ,    .'7 /|");
+                Console.WriteLine(@"(_,___/...-` (_/_/");
+                Console.WriteLine();
+                Console.WriteLine();
+
+            }
+            else if (Species == "Cat")
+            {
+                //Print cat
+                Console.WriteLine(@"   |\---/|");
+                Console.WriteLine(@"   | ,_, |");
+                Console.WriteLine(@"    \_`_/-..----.");
+                Console.WriteLine(@" ___/ `   ' ,''+ \ ");
+                Console.WriteLine(@"(__...'   __\    |`.___.';");
+                Console.WriteLine(@"  (_,...'(_,.`__)/'.....+");
+                Console.WriteLine();
+                Console.WriteLine();
+            }
         }
     }
 }
