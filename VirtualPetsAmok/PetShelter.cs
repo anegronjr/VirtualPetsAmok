@@ -11,6 +11,7 @@ namespace VirtualPetsAmok
         public static Menu menu = new Menu();
         public VirtualPet firstPet;
         public VirtualPet pet;
+        static Animations animation = new Animations();
 
 
 
@@ -143,8 +144,11 @@ namespace VirtualPetsAmok
 
             Console.WriteLine("Thanks for playing Virtual Pets Amok!");
             Console.WriteLine("We'll start by creating your first pet.");
+            Console.WriteLine();
             Console.WriteLine("Press ENTER to continue.");
             Console.ReadKey();
+            Console.Clear();
+            animation.loadingScreen();
             Console.Clear();
             //shelter.CurrentPet = 0;
 
