@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualPetsAmok", "VirtualPetsAmok\VirtualPetsAmok.csproj", "{B2F0DFFB-447B-474F-8DC7-8A6471832317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualPetsAmok.Tests", "VirtualPetsAmok.Tests\VirtualPetsAmok.Tests.csproj", "{07F5BEC7-F62E-41E8-9703-C2351291055B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualPetsAmok.Tests", "VirtualPetsAmok.Tests\VirtualPetsAmok.Tests.csproj", "{07F5BEC7-F62E-41E8-9703-C2351291055B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2078CE0E-DC2C-4BA0-9C63-7FFDD9AC491F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
