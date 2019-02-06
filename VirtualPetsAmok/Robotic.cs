@@ -36,6 +36,25 @@ namespace VirtualPetsAmok
 
         public override void ShowStatus()
         {
+            Console.Clear();
+            DrawPicture();
+            Console.WriteLine("Oil Level: " + OilLevel);
+            Console.WriteLine("Battery Level: " + BatteryLevel);
+            Console.WriteLine("Temperature: " + Temperature);
+            Console.WriteLine("Press Enter to return to the Main Menu");
+            Console.ReadKey();
+        }
+
+        public override void ShowInfo()
+        {
+            Console.Clear();
+            DrawPicture();
+            Console.WriteLine("Pet Name: " + Name);
+            Console.WriteLine("Pet Type: " + Type);
+            Console.WriteLine("Pet Species: " + Species);
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER to return to the Main Menu.");
+            Console.ReadKey();
         }
 
         public override void Decay()
@@ -45,6 +64,64 @@ namespace VirtualPetsAmok
             OilLevel -= random.Next(10, 20);
             BatteryLevel -= random.Next(10, 20);
             Temperature += random.Next(10, 20);
+        }
+
+        public override void PetInteractions()
+        {
+            Decay();
+            Console.Clear();
+            Console.WriteLine("What would you like to do with " + Name + "?");
+            Console.WriteLine("1. Oil Pet");
+            Console.WriteLine("2. Charge Battery");
+            Console.WriteLine("3. Cooldown");
+            Console.WriteLine("0. Go Back to Main Menu");
+
+            string interactionSelection = Console.ReadLine();
+
+            switch (interactionSelection)
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("You gave " + Name + " some oil.");
+                    Console.WriteLine(Name + " is functioning properly.");
+                    OilChange();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + "'s Oil Level is now " + OilLevel);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine("You plugged " + Name + " in for a charge.");
+                    ChargeBattery();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + "'s Battery Level is now: " + BatteryLevel);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine("You cooled off " + Name);
+                    CoolDown();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + " is now cooled off!");
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "0":
+                    //MainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid selection. Press ENTER to try again.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+
+            }
+            
         }
     }
 }

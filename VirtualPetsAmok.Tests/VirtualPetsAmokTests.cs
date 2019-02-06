@@ -6,7 +6,7 @@ namespace VirtualPetsAmok.Tests
 {
     public class VirtualPetsAmokTests
     {
-        [Fact]
+        /*[Fact]
         public void Creates_First_Pet()
         {
             VirtualPet pet = new VirtualPet();
@@ -161,7 +161,7 @@ namespace VirtualPetsAmok.Tests
             Assert.InRange(myPet.Hunger, 21, 55);
         }
 
-        
+     */
     }
 
 }

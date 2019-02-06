@@ -6,6 +6,7 @@ namespace VirtualPetsAmok
 {
     public class Organic : VirtualPet
     {
+        public static Menu menu = new Menu();
         public int Hunger { get; private set; }
         public int Fatigue { get; private set; }
         public int Thirst { get; private set; }
@@ -67,14 +68,111 @@ namespace VirtualPetsAmok
 
         public override void ShowStatus()
         {
-
+            Console.Clear();
+            DrawPicture();
+            Console.WriteLine("Boredom: " + Boredom);
+            Console.WriteLine("Hunger: " + Hunger);
+            Console.WriteLine("Fatigue: " + Fatigue);
+            Console.WriteLine("Potty: " + Potty);
+            Console.WriteLine("Thirst: " + Thirst);
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER to return to the Main Menu.");
+            Console.ReadKey();
         }
 
+        public override void ShowInfo()
+        {
+            Console.Clear();
+            DrawPicture();
+            Console.WriteLine("Pet Name: " + Name);
+            Console.WriteLine("Pet Type: " + Type);
+            Console.WriteLine("Pet Species: " + Species);
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER to return to the Main Menu.");
+            Console.ReadKey();
+        }
 
+        public override void PetInteractions()
+        {
+            Decay();
+            Console.Clear();
+            Console.WriteLine("What would you like to do with " + Name + "?");
+            Console.WriteLine("1. Play");
+            Console.WriteLine("2. Feed");
+            Console.WriteLine("3. Sleep");
+            Console.WriteLine("4. Take to Bathroom");
+            Console.WriteLine("5. Give Water");
+            Console.WriteLine("0. Go Back to Main Menu");
 
+            string interactionSelection = Console.ReadLine();
+
+            switch (interactionSelection)
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("You took " + Name + " out to the park!");
+                    Console.WriteLine(Name + " had a great time!");
+                    Play();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + "'s Boredom is now: " + Boredom);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine(Name + " devoured its food!");
+                    Feed();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + "'s Hunger is now: " + Hunger);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine("Zzzzzzzzzzzzzzzzzzz. " + Name + " is taking a nap...");
+                    Rest();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + " is now fully rested!");
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "4":
+                    Console.Clear();
+                    Console.WriteLine(Name + " sniffs around...");
+                    Console.WriteLine(Name + " left a mess!");
+                    Poop();
+                    Console.WriteLine();
+                    Console.WriteLine(Name + " successfully relieved itself!");
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "5":
+                    Console.Clear();
+                    Console.WriteLine(Name + " drinks some water!");
+                    Drink();
+                    Console.WriteLine(Name + " looks pleased!");
+                    Console.WriteLine();
+                    Console.WriteLine(Name + "'s thirst is now: " + Thirst);
+                    Console.WriteLine("Press ENTER to continue.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+                case "0":
+                    menu.MainMenu();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid selection. Press ENTER to try again.");
+                    Console.ReadKey();
+                    PetInteractions();
+                    break;
+            }
+
+            
+        }
 
     }
-
-
-
 }

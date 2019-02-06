@@ -14,6 +14,11 @@ namespace VirtualPetsAmok
 
         public abstract void ShowStatus();
 
+        public abstract void ShowInfo();
+
+        public abstract void PetInteractions();
+
+
         public void DrawPicture()
         {
             if (Species == "Dog")
