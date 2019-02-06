@@ -11,6 +11,7 @@ namespace VirtualPetsAmok.Tests
         {
             VirtualPet pet = new VirtualPet();
         }
+
         [Fact]
         public void Pets_In_List()
         {
@@ -50,19 +51,19 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Pet_Has_Hunger()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Hunger = 42;
+            
 
-            Assert.Equal(42, myPet.Hunger);
+            Assert.InRange(myPet.Hunger, 20, 50);
         }
 
         [Fact]
         public void Pet_Has_Fatigue()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Fatigue = 42;
+            
 
             Assert.InRange(myPet.Fatigue, 20, 50);
         }
@@ -70,9 +71,9 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Pet_Has_Thirst()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Thirst = 42;
+           
 
             Assert.InRange(myPet.Thirst, 20, 50);
         }
@@ -80,9 +81,9 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Pet_Has_Boredom()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Boredom = 42;
+            
 
             Assert.InRange(myPet.Boredom, 20, 50);
         }
@@ -90,9 +91,9 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Pet_Has_Potty()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Potty = 42;
+           
 
             Assert.InRange(myPet.Potty, 20, 50);
         }
@@ -100,9 +101,7 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Feed_Decrease_Hunger()
         {
-            var myPet = new VirtualPet();
-
-            myPet.Hunger = 42;
+            Organic myPet = new Organic();
 
             myPet.Feed();
 
@@ -112,7 +111,7 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Rest_Decrease_Fatigue()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
             myPet.Rest();
 
@@ -122,31 +121,29 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Drink_Decrease_Thirst()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Thirst = 42;
 
             myPet.Drink();
 
-            Assert.InRange(myPet.Thirst, 32, 37);
+            Assert.InRange(myPet.Thirst, 21, 55);
         }
 
         [Fact]
         public void Play_Decrease_Boredom()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
-            myPet.Boredom = 42;
 
             myPet.Play();
 
-            Assert.InRange(myPet.Boredom, 32, 37);
+            Assert.InRange(myPet.Boredom, 21, 55);
         }
 
         [Fact]
         public void Poop_Decrease_Potty()
         {
-            var myPet = new VirtualPet();
+            Organic myPet = new Organic();
 
             myPet.Poop();
 
@@ -156,13 +153,15 @@ namespace VirtualPetsAmok.Tests
         [Fact]
         public void Decay_Affects_Status()
         {
-            var myPet = new VirtualPet();
-            myPet.Hunger = 42;
+            Organic myPet = new Organic();
+     
 
             myPet.Decay();
 
-            Assert.InRange(myPet.Hunger, 43, 47);
+            Assert.InRange(myPet.Hunger, 21, 55);
         }
+
+        
     }
 
 }

@@ -17,7 +17,7 @@ namespace VirtualPetsAmok
 
         public PetShelter()
         {
-            firstPet = new VirtualPet();
+            firstPet = new Organic();
             Pets = new List<VirtualPet>();
             Pets.Add(firstPet);
             CurrentPet = 0;
@@ -29,7 +29,6 @@ namespace VirtualPetsAmok
             Pets.Add(pet);
         }
 
-        //Method that displays information for all pets.
         public void AllPets()
         {
             Console.Clear();
@@ -43,7 +42,6 @@ namespace VirtualPetsAmok
             //MainMenu();
         }
 
-        //Method that allows user to switch current pet.
         public void SwitchCurrentPet()
         {
             Console.Clear();
@@ -77,12 +75,77 @@ namespace VirtualPetsAmok
             Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();
         }
-        
-        //Method that creates new pets.
+
         public void CreatePet()
         {
-            //int numPets = Pets.Count;
-            VirtualPet newPet = new VirtualPet();
+            Console.Clear();
+            Console.WriteLine("What kind of pet would you like to make?");
+            Console.WriteLine("1. Organic Pet");
+            Console.WriteLine("2. Robotic Pet");
+
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    CreateOrganicPet();
+                    break;
+                case "2":
+                    CreateRoboticPet();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid choice. Press ENTER to try again");
+                    Console.ReadKey();
+                    CreatePet();
+                    break;
+            }
+        }
+
+        public void CreateOrganicPet()
+        {
+            Organic newPet = new Organic();
+
+            Console.Clear();
+            Console.WriteLine("Please name your new pet: ");
+            newPet.Name = Console.ReadLine();
+            Console.Clear();
+            bool runNew = true;
+            do
+            {
+                Console.WriteLine("What species is your new pet?");
+                Console.WriteLine("1. Dog");
+                Console.WriteLine("2. Cat");
+                Console.WriteLine();
+                string speciesChoice = Console.ReadLine();
+
+                switch (speciesChoice)
+                {
+                    case "1":
+                        newPet.Species = "Dog";
+                        runNew = false;
+                        break;
+                    case "2":
+                        newPet.Species = "Cat";
+                        runNew = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please choose either a dog or cat. Press ENTER to try again.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                }
+            } while (runNew);
+
+            Pets.Add(newPet);
+
+            Console.Clear();
+            Console.WriteLine("Congratulations! Your new pet " + newPet.Species + ", " + newPet.Name + ", is ready to go!");
+            Console.WriteLine("Press ENTER to go to the main menu.");
+            Console.ReadKey();
+        }
+
+        public void CreateRoboticPet()
+        {
+            Robotic newPet = new Robotic();
 
             Console.Clear();
             Console.WriteLine("Please name your new pet: ");
@@ -127,15 +190,30 @@ namespace VirtualPetsAmok
         {
             Console.Clear();
             pet.DrawPicture();
-            Console.WriteLine("Boredom: " + pet.Boredom);
-            Console.WriteLine("Hunger: " + pet.Hunger);
-            Console.WriteLine("Fatigue: " + pet.Fatigue);
-            Console.WriteLine("Potty: " + pet.Potty);
-            Console.WriteLine("Thirst: " + pet.Thirst);
-            Console.WriteLine();
-            Console.WriteLine("Press ENTER to return to the Main Menu.");
-            Console.ReadKey();
+
+            Organic organicPet = pet as Organic;
+            if (organicPet != null)
+            {
+                Console.WriteLine("Boredom: " + organicPet.Boredom);
+                Console.WriteLine("Hunger: " + organicPet.Hunger);
+                Console.WriteLine("Fatigue: " + organicPet.Fatigue);
+                Console.WriteLine("Potty: " + organicPet.Potty);
+                Console.WriteLine("Thirst: " + organicPet.Thirst);
+                Console.WriteLine();
+                Console.WriteLine("Press ENTER to return to the Main Menu.");
+                Console.ReadKey();
+            }
+
+            Robotic roboticPet = pet as Robotic;
+            if (roboticPet != null)
+            {
+                Console.WriteLine("Oil Level: " + roboticPet.OilLevel);
+                Console.WriteLine("Battery Level: " + roboticPet.BatteryLevel);
+                Console.WriteLine("Temperature: " + roboticPet.Temperature);
+            }
         }
+
+
 
         public void GameStart(PetShelter shelter)
         {
@@ -150,9 +228,6 @@ namespace VirtualPetsAmok
             Console.Clear();
             animation.loadingScreen();
             Console.Clear();
-            //shelter.CurrentPet = 0;
-
-            //menu.MainMenu(shelter);
 
             bool run = true;
                 do
@@ -189,5 +264,8 @@ namespace VirtualPetsAmok
                 Console.WriteLine("Press ENTER to go to the main menu.");
                 Console.ReadKey();
         }
+
+
+        
     }
 }
