@@ -46,5 +46,6 @@ namespace VirtualPetsAmok
                 Console.WriteLine();
             }
         }
+
     }
 }

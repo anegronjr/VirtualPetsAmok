@@ -12,5 +12,6 @@ namespace VirtualPetsAmok
             shelter.GameStart(shelter);
             Menu.MainMenu(shelter);
         }
+
     }
 }

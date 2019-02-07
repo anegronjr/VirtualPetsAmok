@@ -406,14 +406,14 @@ namespace VirtualPetsAmok
         {
 
             pet = shelter.Pets[shelter.CurrentPet];
-
-            Console.WriteLine("Thanks for playing Virtual Pets Amok!");
-            Console.WriteLine("We'll start by creating your first pet.");
-            Console.WriteLine();
-            Console.WriteLine("Press ENTER to continue.");
             Console.ReadKey();
+            animation.Lights();
+            animation.Lights();
             Console.Clear();
-            animation.loadingScreen();
+            Console.WriteLine("Welcome to");
+            animation.Title();
+            Console.WriteLine("Press ENTER to create your first pet.");
+            Console.ReadKey();
             Console.Clear();
 
             bool run = true;
