@@ -6,7 +6,6 @@ namespace VirtualPetsAmok
 {
     public class Organic : VirtualPet
     {
-        public static Menu menu = new Menu();
         public int Hunger { get; private set; }
         public int Fatigue { get; private set; }
         public int Thirst { get; private set; }
@@ -92,7 +91,7 @@ namespace VirtualPetsAmok
             Console.ReadKey();
         }
 
-        public override void PetInteractions()
+        public override void PetInteractions(PetShelter shelter)
         {
             Decay();
             Console.Clear();
@@ -117,7 +116,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + "'s Boredom is now: " + Boredom);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "2":
                     Console.Clear();
@@ -127,7 +126,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + "'s Hunger is now: " + Hunger);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "3":
                     Console.Clear();
@@ -137,7 +136,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + " is now fully rested!");
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "4":
                     Console.Clear();
@@ -148,7 +147,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + " successfully relieved itself!");
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "5":
                     Console.Clear();
@@ -159,20 +158,19 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + "'s thirst is now: " + Thirst);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "0":
-                    menu.MainMenu();
+                    Menu.MainMenu(shelter);
                     break;
                 default:
                     Console.WriteLine("Please enter a valid selection. Press ENTER to try again.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
             }
 
             
         }
-
     }
 }

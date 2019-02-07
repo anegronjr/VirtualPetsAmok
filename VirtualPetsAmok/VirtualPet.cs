@@ -16,8 +16,7 @@ namespace VirtualPetsAmok
 
         public abstract void ShowInfo();
 
-        public abstract void PetInteractions();
-
+        public abstract void PetInteractions(PetShelter shelter);
 
         public void DrawPicture()
         {

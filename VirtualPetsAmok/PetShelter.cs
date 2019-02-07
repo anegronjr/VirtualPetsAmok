@@ -8,12 +8,9 @@ namespace VirtualPetsAmok
     {
         public List<VirtualPet> Pets { get; set; }
         public int CurrentPet { get; set; }
-        public static Menu menu = new Menu();
         public VirtualPet firstPet;
         public VirtualPet pet;
         static Animations animation = new Animations();
-
-
 
         public PetShelter()
         {
@@ -62,18 +59,6 @@ namespace VirtualPetsAmok
             Console.Clear();
             Console.WriteLine("Your current pet is now " + pet.Name + "!");
             Console.WriteLine("Press ENTER to continue.");
-            Console.ReadKey();
-        }
-
-        public void PetInfo()
-        {
-            Console.Clear();
-            pet.DrawPicture();
-            Console.WriteLine("Pet Name: " + pet.Name);
-            Console.WriteLine("Pet Type: " + pet.Type);
-            Console.WriteLine("Pet Species: " + pet.Species);
-            Console.WriteLine();
-            Console.WriteLine("Press ENTER to return to the Main Menu.");
             Console.ReadKey();
         }
 
@@ -238,8 +223,5 @@ namespace VirtualPetsAmok
 
 
         }
-
-
-        
     }
 }

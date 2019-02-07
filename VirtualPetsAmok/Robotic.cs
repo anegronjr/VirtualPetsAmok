@@ -61,12 +61,12 @@ namespace VirtualPetsAmok
         {
             Random random = new Random();
 
-            OilLevel -= random.Next(10, 20);
-            BatteryLevel -= random.Next(10, 20);
-            Temperature += random.Next(10, 20);
+            OilLevel -= random.Next(1, 5);
+            BatteryLevel -= random.Next(1, 5);
+            Temperature += random.Next(1, 5);
         }
 
-        public override void PetInteractions()
+        public override void PetInteractions(PetShelter shelter)
         {
             Decay();
             Console.Clear();
@@ -89,7 +89,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + "'s Oil Level is now " + OilLevel);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "2":
                     Console.Clear();
@@ -99,7 +99,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + "'s Battery Level is now: " + BatteryLevel);
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "3":
                     Console.Clear();
@@ -109,15 +109,15 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + " is now cooled off!");
                     Console.WriteLine("Press ENTER to continue.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
                 case "0":
-                    //MainMenu();
+                    Menu.MainMenu(shelter);
                     break;
                 default:
                     Console.WriteLine("Please enter a valid selection. Press ENTER to try again.");
                     Console.ReadKey();
-                    PetInteractions();
+                    PetInteractions(shelter);
                     break;
 
             }

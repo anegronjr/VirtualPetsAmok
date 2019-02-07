@@ -4,31 +4,33 @@ using System.Text;
 
 namespace VirtualPetsAmok
 {
-    public class Menu
+    public static class Menu
     {        
-        public void MainMenu(PetShelter shelter)
+        public static void MainMenu(PetShelter shelter)
         {
+            shelter.pet.Decay();
+
             Console.WriteLine("Current Pet:  " + shelter.pet.Name);
             Console.WriteLine();
-            shelter.pet.Decay();
             Console.Clear();
             Console.WriteLine("========= MAIN MENU =========");
             Console.WriteLine("1. Interact with " + shelter.pet.Name);
             Console.WriteLine("2. Display " + shelter.pet.Name + "'s Information");
             Console.WriteLine("3. Display " + shelter.pet.Name + "'s Status");
-            Console.WriteLine("4. Display All Pet Information");
+            Console.WriteLine("4. Display Information for All Pets");
             Console.WriteLine("5. Switch Current Pet");
             Console.WriteLine("6. Create New Pet");
             Console.WriteLine("0. Quit Game");
+
             string menuSelection = Console.ReadLine();
 
             switch (menuSelection)
             {
                 case "1":
-                    shelter.pet.PetInteractions();
+                    shelter.pet.PetInteractions(shelter);
                     break;
                 case "2":
-                    shelter.PetInfo();
+                    shelter.pet.ShowInfo();
                     MainMenu(shelter);
                     break;
                 case "3":
