@@ -28,6 +28,11 @@ namespace VirtualPetsAmok
             Random rnd = new Random();
 
             Hunger -= rnd.Next(5, 10);
+            
+            if (Hunger < 0)
+            {
+                Hunger = 0;
+            }
         }
 
         public void Rest()
@@ -40,6 +45,8 @@ namespace VirtualPetsAmok
             Random rnd = new Random();
 
             Thirst -= rnd.Next(5, 10);
+
+            if (Thirst < 0) { Thirst = 0; }
         }
 
         public void Play()
@@ -47,6 +54,7 @@ namespace VirtualPetsAmok
             Random rnd = new Random();
 
             Boredom -= rnd.Next(5, 10);
+            if (Boredom < 0) { Boredom = 0; }
         }
 
         public void Poop()
@@ -57,12 +65,33 @@ namespace VirtualPetsAmok
         public override void Decay()
         {
             Random random = new Random();
-
+            
             Hunger += random.Next(1, 5);
             Thirst += random.Next(1, 5);
             Boredom += random.Next(1, 5);
             Potty += random.Next(1, 5);
             Fatigue += random.Next(1, 5);
+
+            if (Hunger > 100)
+            {
+                Hunger = 100;
+            }
+            if (Thirst > 100)
+            {
+                Thirst = 100;
+            }
+            if (Potty > 100)
+            {
+                Potty = 100;
+            }
+            if (Boredom > 100)
+            {
+                Boredom = 100;
+            }
+            if (Fatigue > 100)
+            {
+                Fatigue = 100;
+            }
         }
 
         public override void ShowStatus()
@@ -170,7 +199,8 @@ namespace VirtualPetsAmok
                     break;
             }
 
-            
+
         }
+
     }
 }

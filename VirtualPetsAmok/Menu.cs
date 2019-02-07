@@ -18,8 +18,11 @@ namespace VirtualPetsAmok
             Console.WriteLine("2. Display " + shelter.pet.Name + "'s Information");
             Console.WriteLine("3. Display " + shelter.pet.Name + "'s Status");
             Console.WriteLine("4. Display Information for All Pets");
-            Console.WriteLine("5. Switch Current Pet");
-            Console.WriteLine("6. Create New Pet");
+            Console.WriteLine("5. Interact with All Pets");
+            Console.WriteLine("6. Display Status of All Pets");
+            Console.WriteLine("7. Switch Current Pet");
+            Console.WriteLine("8. Create New Pet");
+            Console.WriteLine("9. Remove a Pet from the Shelter.");
             Console.WriteLine("0. Quit Game");
 
             string menuSelection = Console.ReadLine();
@@ -42,11 +45,24 @@ namespace VirtualPetsAmok
                     MainMenu(shelter);
                     break;
                 case "5":
-                    shelter.SwitchCurrentPet();
+                    shelter.AllInteract();
                     MainMenu(shelter);
                     break;
                 case "6":
+                    Console.Clear();
+                    shelter.AllStatus();
+                    MainMenu(shelter);
+                    break;
+                case "7":
+                    shelter.SwitchCurrentPet();
+                    MainMenu(shelter);
+                    break;
+                case "8":
                     shelter.CreatePet();
+                    MainMenu(shelter);
+                    break;
+                case "9":
+                    shelter.RemovePet();
                     MainMenu(shelter);
                     break;
                 case "0":

@@ -64,6 +64,19 @@ namespace VirtualPetsAmok
             OilLevel -= random.Next(1, 5);
             BatteryLevel -= random.Next(1, 5);
             Temperature += random.Next(1, 5);
+
+            if (Temperature > 100)
+            {
+                Temperature = 100;
+            }
+            if (OilLevel < 0)
+            {
+                OilLevel = 0;
+            }
+            if (BatteryLevel < 0)
+            {
+                BatteryLevel = 0;
+            }
         }
 
         public override void PetInteractions(PetShelter shelter)
@@ -121,7 +134,7 @@ namespace VirtualPetsAmok
                     break;
 
             }
-            
+
         }
     }
 }
