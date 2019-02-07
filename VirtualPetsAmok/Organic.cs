@@ -122,8 +122,9 @@ namespace VirtualPetsAmok
 
         public override void PetInteractions(PetShelter shelter)
         {
-            Decay();
             Console.Clear();
+
+            Decay();
             Console.WriteLine("What would you like to do with " + Name + "?");
             Console.WriteLine("1. Play");
             Console.WriteLine("2. Feed");
@@ -172,6 +173,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine(Name + " sniffs around...");
                     Console.WriteLine(Name + " left a mess!");
                     Poop();
+                    shelter.CageDecay();
                     Console.WriteLine();
                     Console.WriteLine(Name + " successfully relieved itself!");
                     Console.WriteLine("Press ENTER to continue.");

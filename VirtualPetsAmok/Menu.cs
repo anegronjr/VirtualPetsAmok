@@ -9,10 +9,12 @@ namespace VirtualPetsAmok
         public static void MainMenu(PetShelter shelter)
         {
             shelter.pet.Decay();
-
-            Console.WriteLine("Current Pet:  " + shelter.pet.Name);
-            Console.WriteLine();
             Console.Clear();
+            Console.WriteLine("Current Pet:  " + shelter.pet.Name);
+            Console.WriteLine("Shelter status: " + shelter.ShelterCleanStatus());
+            Console.WriteLine("Shelter dirtiness: " + shelter.DirtinessLevel);
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine("========= MAIN MENU =========");
             Console.WriteLine("1. Interact with " + shelter.pet.Name);
             Console.WriteLine("2. Display " + shelter.pet.Name + "'s Information");
@@ -23,6 +25,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("7. Switch Current Pet");
             Console.WriteLine("8. Create New Pet");
             Console.WriteLine("9. Remove a Pet from the Shelter.");
+            Console.WriteLine("10. Clean cages.");
             Console.WriteLine("0. Quit Game");
 
             string menuSelection = Console.ReadLine();
@@ -30,6 +33,15 @@ namespace VirtualPetsAmok
             switch (menuSelection)
             {
                 case "1":
+                    if (shelter.DirtinessLevel >= 90)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Shelter is too dirty. Can't interact with pets. Please clean cages first!");
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to go back to main menu");
+                        Console.ReadKey();
+                        MainMenu(shelter);
+                    }
                     shelter.pet.PetInteractions(shelter);
                     break;
                 case "2":
@@ -45,6 +57,15 @@ namespace VirtualPetsAmok
                     MainMenu(shelter);
                     break;
                 case "5":
+                    if (shelter.DirtinessLevel >= 90)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Shelter is too dirty. Can't interact with pets. Please clean cages first!");
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to go back to main menu");
+                        Console.ReadKey();
+                        MainMenu(shelter);
+                    }
                     shelter.AllInteract();
                     MainMenu(shelter);
                     break;
@@ -63,6 +84,10 @@ namespace VirtualPetsAmok
                     break;
                 case "9":
                     shelter.RemovePet();
+                    MainMenu(shelter);
+                    break;
+                case "10":
+                    shelter.CleanCages();
                     MainMenu(shelter);
                     break;
                 case "0":

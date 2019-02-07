@@ -9,6 +9,8 @@ namespace VirtualPetsAmok
     {
         public List<VirtualPet> Pets { get; set; }
         public int CurrentPet { get; set; }
+        public int DirtinessLevel { get; set; }
+
         public VirtualPet firstPet;
         public VirtualPet pet;
         static Animations animation = new Animations();
@@ -20,6 +22,7 @@ namespace VirtualPetsAmok
             Pets.Add(firstPet);
             CurrentPet = 0;
             pet = Pets[CurrentPet];
+            DirtinessLevel = 0;
         }
 
         public void Add(VirtualPet pet)
@@ -85,6 +88,7 @@ namespace VirtualPetsAmok
         public void AllInteract()
         {
             Console.Clear();
+
             Console.WriteLine("Which type of pet would you like to interact with?");
             Console.WriteLine("1. Interact with All Organic Pets.");
             Console.WriteLine("2. Interact with All Robotic Pets.");
@@ -168,6 +172,7 @@ namespace VirtualPetsAmok
                     foreach (Organic pet in organicPet)
                     {
                         pet.Poop();
+                        CageDecay();
                     }
                     Console.WriteLine();
                     Console.WriteLine("All your pets relieved themselves nicely");
@@ -220,6 +225,7 @@ namespace VirtualPetsAmok
                     foreach(Robotic pet in roboticType)
                     {
                         pet.OilChange();
+                        CageDecay();
                     }
                     Console.WriteLine();
                     Console.WriteLine("All Robots are full of oil!");
@@ -477,5 +483,38 @@ namespace VirtualPetsAmok
                 Console.ReadKey();
             }
         }
+        
+
+        public void CleanCages()
+        {
+            DirtinessLevel = 0;
+        }
+
+        public void CageDecay()
+        {
+            Random random = new Random();
+
+            DirtinessLevel += random.Next(5, 10);
+            if (DirtinessLevel > 100)
+            {
+                DirtinessLevel = 100;
+            }
+        }
+
+        public string ShelterCleanStatus()
+        {
+            if (DirtinessLevel > 90)
+            {
+                return "SHELTER TOO DIRTY. PLEASE CLEAN IMMEDIATELY";
+            }
+            else if (DirtinessLevel > 50)
+            {
+                return "Shelter need cleaning.";
+            }
+            else
+            {
+                return "Clean";
+            }
+        }   
     }
 }

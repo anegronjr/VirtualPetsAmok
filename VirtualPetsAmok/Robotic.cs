@@ -22,8 +22,9 @@ namespace VirtualPetsAmok
         public void OilChange()
         {
             OilLevel = 100;
-        }
 
+        }
+        
         public void ChargeBattery()
         {
             BatteryLevel = 100;
@@ -81,8 +82,10 @@ namespace VirtualPetsAmok
 
         public override void PetInteractions(PetShelter shelter)
         {
-            Decay();
+            
             Console.Clear();
+            
+            Decay();
             Console.WriteLine("What would you like to do with " + Name + "?");
             Console.WriteLine("1. Oil Pet");
             Console.WriteLine("2. Charge Battery");
@@ -98,6 +101,7 @@ namespace VirtualPetsAmok
                     Console.WriteLine("You gave " + Name + " some oil.");
                     Console.WriteLine(Name + " is functioning properly.");
                     OilChange();
+                    shelter.CageDecay();
                     Console.WriteLine();
                     Console.WriteLine(Name + "'s Oil Level is now " + OilLevel);
                     Console.WriteLine("Press ENTER to continue.");
