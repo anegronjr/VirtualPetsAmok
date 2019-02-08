@@ -67,14 +67,14 @@ namespace VirtualPetsAmok
                 Console.WriteLine("Thirst: " + pet.Thirst);
                 Console.WriteLine();
             }
-            
+
         }
 
         public void AllRoboticStatus()
         {
             var robotStatus = Pets.OfType<Robotic>();
-            foreach(Robotic pet in robotStatus)
-            {              
+            foreach (Robotic pet in robotStatus)
+            {
                 pet.DrawPicture();
                 Console.WriteLine("Name: " + pet.Name);
                 Console.WriteLine("Type: " + pet.Type);
@@ -92,7 +92,7 @@ namespace VirtualPetsAmok
             Console.WriteLine("Which type of pet would you like to interact with?");
             Console.WriteLine("1. Interact with All Organic Pets.");
             Console.WriteLine("2. Interact with All Robotic Pets.");
-            switch(Console.ReadLine())
+            switch (Console.ReadLine())
             {
                 case "1":
                     AllOrganicInteract();
@@ -122,8 +122,8 @@ namespace VirtualPetsAmok
 
             string interactionSelection = Console.ReadLine();
             var organicPet = Pets.OfType<Organic>();
-           
-            switch(interactionSelection)
+
+            switch (interactionSelection)
             {
                 case "1":
                     Console.Clear();
@@ -168,7 +168,7 @@ namespace VirtualPetsAmok
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("You took your pets to the bathroom!"); 
+                    Console.WriteLine("You took your pets to the bathroom!");
                     foreach (Organic pet in organicPet)
                     {
                         pet.Poop();
@@ -222,7 +222,7 @@ namespace VirtualPetsAmok
                     Console.Clear();
                     Console.WriteLine("You gave your Robots some oil.");
                     Console.WriteLine("Robots are functioning properly.");
-                    foreach(Robotic pet in roboticType)
+                    foreach (Robotic pet in roboticType)
                     {
                         pet.OilChange();
                         CageDecay();
@@ -236,7 +236,7 @@ namespace VirtualPetsAmok
                 case "2":
                     Console.Clear();
                     Console.WriteLine("You plugged Robots in for a charge.");
-                    foreach(Robotic pet in roboticType)
+                    foreach (Robotic pet in roboticType)
                     {
                         pet.ChargeBattery();
                     }
@@ -249,7 +249,7 @@ namespace VirtualPetsAmok
                 case "3":
                     Console.Clear();
                     Console.WriteLine("You cooled off your Robots.");
-                    foreach(Robotic pet in roboticType)
+                    foreach (Robotic pet in roboticType)
                     {
                         pet.CoolDown();
                     }
@@ -268,7 +268,7 @@ namespace VirtualPetsAmok
                     break;
             }
         }
-            
+
         public void SwitchCurrentPet()
         {
             Console.Clear();
@@ -278,7 +278,7 @@ namespace VirtualPetsAmok
             int position = 0;
             foreach (VirtualPet line in Pets)
             {
-                Console.WriteLine((position += 1) + ". Name: " + line.Name + "    Species: " + line.Species +    "    Type: " + line.Type);
+                Console.WriteLine((position += 1) + ". Name: " + line.Name + "    Species: " + line.Species + "    Type: " + line.Type);
             }
 
             CurrentPet = Int32.Parse(Console.ReadLine());
@@ -320,7 +320,7 @@ namespace VirtualPetsAmok
         {
             Organic newPet = new Organic();
             bool namePet = true;
-            do
+            while (namePet)
             {
                 Console.Clear();
                 Console.WriteLine("Please name your new pet: ");
@@ -333,7 +333,7 @@ namespace VirtualPetsAmok
                 {
                     namePet = false;
                 }
-            } while (namePet);
+            }
             Console.Clear();
             bool runNew = true;
             do
@@ -373,12 +373,8 @@ namespace VirtualPetsAmok
         public void CreateRoboticPet()
         {
             Robotic newPet = new Robotic();
-
-            Console.Clear();
-            Console.WriteLine("Please name your new pet: ");
-            newPet.Name = Console.ReadLine();
             bool namePet = true;
-            do
+            while (namePet)
             {
                 Console.Clear();
                 Console.WriteLine("Please name your new pet: ");
@@ -391,7 +387,7 @@ namespace VirtualPetsAmok
                 {
                     namePet = false;
                 }
-            } while (namePet);
+            }
             Console.Clear();
             bool runNew = true;
             do
@@ -515,7 +511,7 @@ namespace VirtualPetsAmok
                 Console.ReadKey();
             }
         }
-        
+
 
         public void CleanCages()
         {
@@ -540,7 +536,7 @@ namespace VirtualPetsAmok
                 Console.BackgroundColor = ConsoleColor.Red;
                 return "SHELTER TOO DIRTY. PLEASE CLEAN IMMEDIATELY";
 
-                
+
             }
             else if (DirtinessLevel > 50)
             {
@@ -551,8 +547,8 @@ namespace VirtualPetsAmok
             {
                 return "Clean";
             }
-            
-            
-        }   
+
+
+        }
     }
 }
