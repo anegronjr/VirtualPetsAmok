@@ -76,8 +76,8 @@ namespace VirtualPetsAmok
             foreach(Robotic pet in robotStatus)
             {              
                 pet.DrawPicture();
-                Console.WriteLine(pet.Name);
-                Console.WriteLine(pet.Type);
+                Console.WriteLine("Name: " + pet.Name);
+                Console.WriteLine("Type: " + pet.Type);
                 Console.WriteLine("Oil Level: " + pet.OilLevel);
                 Console.WriteLine("Battery Level: " + pet.BatteryLevel);
                 Console.WriteLine("Temperature: " + pet.Temperature);
@@ -278,7 +278,7 @@ namespace VirtualPetsAmok
             int position = 0;
             foreach (VirtualPet line in Pets)
             {
-                Console.WriteLine((position += 1) + ". Name: " + line.Name + "     Species: " + line.Species);
+                Console.WriteLine((position += 1) + ". Name: " + line.Name + "    Species: " + line.Species +    "    Type: " + line.Type);
             }
 
             CurrentPet = Int32.Parse(Console.ReadLine());
