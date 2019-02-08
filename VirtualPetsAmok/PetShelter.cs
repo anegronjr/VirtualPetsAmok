@@ -319,10 +319,21 @@ namespace VirtualPetsAmok
         public void CreateOrganicPet()
         {
             Organic newPet = new Organic();
-
-            Console.Clear();
-            Console.WriteLine("Please name your new pet: ");
-            newPet.Name = Console.ReadLine();
+            bool namePet = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Please name your new pet: ");
+                newPet.Name = Console.ReadLine();
+                if (newPet.Name.Length < 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    namePet = false;
+                }
+            } while (namePet);
             Console.Clear();
             bool runNew = true;
             do
@@ -366,6 +377,21 @@ namespace VirtualPetsAmok
             Console.Clear();
             Console.WriteLine("Please name your new pet: ");
             newPet.Name = Console.ReadLine();
+            bool namePet = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Please name your new pet: ");
+                newPet.Name = Console.ReadLine();
+                if (newPet.Name.Length < 1)
+                {
+                    continue;
+                }
+                else
+                {
+                    namePet = false;
+                }
+            } while (namePet);
             Console.Clear();
             bool runNew = true;
             do
@@ -410,6 +436,7 @@ namespace VirtualPetsAmok
             animation.Lights();
             animation.Lights();
             Console.Clear();
+            Console.WriteLine();
             Console.WriteLine("Welcome to");
             animation.Title();
             Console.WriteLine("Press ENTER to create your first pet.");
@@ -421,6 +448,11 @@ namespace VirtualPetsAmok
             {
                 Console.WriteLine("Please name your new pet.");
                 pet.Name = Console.ReadLine();
+                if (pet.Name.Length < 1)
+                {
+                    Console.Clear();
+                    continue;
+                }
                 Console.Clear();
                 Console.WriteLine("What species is your new pet?");
                 Console.WriteLine("1. Dog");
@@ -505,16 +537,22 @@ namespace VirtualPetsAmok
         {
             if (DirtinessLevel > 90)
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 return "SHELTER TOO DIRTY. PLEASE CLEAN IMMEDIATELY";
+
+                
             }
             else if (DirtinessLevel > 50)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 return "Shelter need cleaning.";
             }
             else
             {
                 return "Clean";
             }
+            
+            
         }   
     }
 }

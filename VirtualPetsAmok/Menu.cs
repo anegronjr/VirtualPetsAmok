@@ -12,6 +12,8 @@ namespace VirtualPetsAmok
             Console.Clear();
             Console.WriteLine("Current Pet:  " + shelter.pet.Name);
             Console.WriteLine("Shelter status: " + shelter.ShelterCleanStatus());
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("Shelter dirtiness: " + shelter.DirtinessLevel);
             Console.WriteLine();
             Console.WriteLine();
@@ -36,7 +38,11 @@ namespace VirtualPetsAmok
                     if (shelter.DirtinessLevel >= 90)
                     {
                         Console.Clear();
-                        Console.WriteLine("Shelter is too dirty. Can't interact with pets. Please clean cages first!");
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Shelter is too dirty. Can't interact with pets.");
+                        Console.WriteLine("Please clean shelter first.");
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine();
                         Console.WriteLine("Press any key to go back to main menu");
                         Console.ReadKey();
